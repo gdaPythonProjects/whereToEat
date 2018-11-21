@@ -12,8 +12,7 @@ def wynik():
     #x jest potrzebny do skrócenia nazwy funkcji
     x = funkcja_szer_dlug(szerokosc,dlugosc,zasieg)
     #wysłanie danych do wynik.html
-    return funkcja_szer_dlug(szerokosc,dlugosc,zasieg)
-    #return render_template("wynik.html",przeslij_html=x)
+    return render_template("wynik.html",przeslij_html=x)
 
 @app.route('/')
 def index():
