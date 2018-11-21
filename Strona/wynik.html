@@ -11,7 +11,8 @@
  <script type="text/javascript">
     
     var wyniki = {{przeslij_html|tojson}};
-    iloscWynikow=(wyniki.length/3);
+    iloscWynikow=(wyniki.length/4);
+    console.log(wyniki);
     console.log("ilość wyników: " + iloscWynikow);
     function loadMapScenario() {
      var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
@@ -19,8 +20,10 @@
         var a = wyniki[0];
         var b = wyniki[1];
         var name = wyniki[2];
-        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(a,b), {title: name}));
-       var z = 3;
+        var votes = wyniki[3];
+        if(votes==0){votes=""};
+        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(a,b), {title: name, text:votes}));
+       var z = 4;
         while(z>0){
             wyniki.shift();
             z--;
