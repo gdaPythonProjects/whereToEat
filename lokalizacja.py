@@ -12,8 +12,8 @@ def funkcja_szer_dlug(szerokosc,dlugosc,zasieg):
     miejsca = data['restaurants']
     #Wejście do JSON'A
     for miejsce in miejsca:
-        listaAdresow.append(str(miejsce['restaurant']['location']['latitude']))
-        listaAdresow.append(str(miejsce['restaurant']['location']['longitude']))
-        listaAdresow.append(str(miejsce['restaurant']['name']))
-    poukladane1 = "<br />".join(listaAdresow)
-    return poukladane1
+        listaAdresow.append((miejsce['restaurant']['location']['latitude']))
+        listaAdresow.append((miejsce['restaurant']['location']['longitude']))
+        listaAdresow.append((miejsce['restaurant']['name']))
+    #poukladane1 = "<br />".join(listaAdresow)
+    return listaAdresow
