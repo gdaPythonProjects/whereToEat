@@ -19,7 +19,7 @@
         var a = wyniki[0];
         var b = wyniki[1];
         var name = wyniki[2];
-        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(a,b)));
+        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(a,b), {title: name}));
        var z = 3;
         while(z>0){
             wyniki.shift();
