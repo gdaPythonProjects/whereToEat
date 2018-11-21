@@ -11,11 +11,28 @@
        Zasięg: <input type="range" min="1000" max="50000" value="1000" name="zasieg" onchange="updateTextInput(this.value);"><br> <input type="text" id="odleglosc" value="1km" readonly size="1"><br>
         <br>
         <input type="submit">
+
     </form>
+<button onclick="getLocation()"><img height="30px" width="30px" src="https://imageog.flaticon.com/icons/png/512/54/54574.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"></button>
+        <p id="demo"></p>
 </body>
 <script>
 	function updateTextInput(val) {
           document.getElementById('odleglosc').value=(parseFloat(Math.round(val/1000).toFixed(0)))+" km";
         }
+</script>
+<script>
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+}
 </script>
 </html>
