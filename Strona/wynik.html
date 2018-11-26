@@ -8,29 +8,7 @@
       <div id='printoutPanel'></div>
         
         <div id='myMap' style='width: 60vw; height: 60vh;margin:auto;width:50%;border:3px solid black; '></div>
- <script type="text/javascript">
-    
-    var wyniki = {{przeslij_html|tojson}};
-    iloscWynikow=(wyniki.length/4);
-    console.log(wyniki);
-    console.log("ilość wyników: " + iloscWynikow);
-    function loadMapScenario() {
-     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
-    while (iloscWynikow>0){
-        var menuurl=wyniki[4];
-        var votes =wyniki[3]
-        if(votes==0){votes=""};
-        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(wyniki[0],wyniki[1]), {title: wyniki[2], text:votes}));
-       var z = 5;
-        while(z>0){
-            wyniki.shift();
-            z--;
-            }
-
-            
-        iloscWynikow--;
-    }}
- </script>
+<script src="mapScript.js"></script>
         </script>
         <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=ApLReG14M6sT3mBJyKSDPBI872kC1nMfb5G58GxIn-jr_e6pCOfG14tqlP1AbP3T&callback=loadMapScenario' async defer></script>
 
