@@ -18,5 +18,5 @@ def funkcja_szer_dlug(szerokosc,dlugosc,zasieg):
         listaAdresow.append((miejsce['restaurant']['user_rating']['aggregate_rating']))
         listaAdresow.append((miejsce['restaurant']['menu_url']))
 
-    poukladane1 = "<br />".join(listaAdresow)
+    #poukladane1 = "<br />".join(listaAdresow)
     return listaAdresow
