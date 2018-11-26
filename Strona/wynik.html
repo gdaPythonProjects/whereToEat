@@ -17,13 +17,10 @@
     function loadMapScenario() {
      var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
     while (iloscWynikow>0){
-        var a = wyniki[0];
-        var b = wyniki[1];
-        var name = wyniki[2];
-        var votes = wyniki[3];
-        if(votes==0){votes=""};
-        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(a,b), {title: name, text:votes}));
-       var z = 4;
+        var menuurl=wyniki[4];
+        if(wyniki[3]==0){votes=""};
+        map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(wyniki[0],wyniki[1]), {title: wyniki[2], text:wyniki[3]}));
+       var z = 5;
         while(z>0){
             wyniki.shift();
             z--;
