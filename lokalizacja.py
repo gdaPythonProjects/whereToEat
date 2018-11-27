@@ -12,6 +12,7 @@ def funkcja_szer_dlug(szerokosc, dlugosc, zasieg):
         szerokosc) + "&sort=real_distance"
     r = requests.get(url, headers={'user-key': Key})
     data = r.json()
+
     miejsca = data['restaurants']
     # Wejście do JSON'A
     for miejsce in miejsca:

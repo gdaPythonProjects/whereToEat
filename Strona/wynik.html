@@ -12,8 +12,6 @@
 <div id='myMap' style='width: 60vw; height: 60vh;margin:auto;width:50%;border:3px solid black; '></div>
 <script type='text/javascript'>   var wyniki = {{przeslij_html|tojson}};
     iloscWynikow=(wyniki.length/4);
-    console.log(wyniki);
-    console.log("ilość wyników: " + iloscWynikow);
     function loadMapScenario() {
      var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
     while (iloscWynikow>0){
