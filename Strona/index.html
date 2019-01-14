@@ -25,17 +25,17 @@
                     </li>
                     <li>
                         <a> Długość geograficzna:<br><input type="text" class="wartosci" name="dlugosc">
-                          <button class="black" onclick="getLocation()">Użyj mojej lokalizacji<br>
+                          <button class="black" onclick="javascript:return getLocation()">Użyj mojej lokalizacji<br><br>
                             <img height="60px"width="auto"src="https://imageog.flaticon.com/icons/png/512/54/54574.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"> </a>
                     </li>
                     <li>
                         <a> Miasto:<input type="text" class="wartosci" name="miasto"><br>
-                        </button>
+                        
 
                     </a></li>
                     <li><a>
-                        <a class="waves-effect waves-green btn-large" href="#"><input type="submit" value="Wyślij"></a>
-                    </a></li>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Wyślij 
+  </button>       </a></li>
             </div>
 
             </form>
@@ -68,6 +68,7 @@ function getLocation() {
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+    return false;
 }
 function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude +
