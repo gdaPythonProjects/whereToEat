@@ -4,3 +4,4 @@ def dzialanie_na_stringu(dane):
     dane = x.findall(dane)
     print(str(''.join(dane)))
 def dzialanie_na_liczbie(liczba):
+	x=re.sub(r',','.',liczba)
