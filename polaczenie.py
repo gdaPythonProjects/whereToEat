@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id,funkcja_miasto
+from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id
 import webbrowser
 
 # postawienie sewera
@@ -16,7 +16,7 @@ def wynik():
     # wysłanie danych do wynik.html
     if szerokosc == '' or dlugosc == '':
         s, d = funkcja_miasto_na_miasto_id(miasto)
-        y = funkcja_miasto(50,s,d)
+        y = funkcja_szer_dlug(s,d)
         if type(y) == list:
             return render_template("wynik.html", przeslij_html=y)
         elif type(y) == str:
