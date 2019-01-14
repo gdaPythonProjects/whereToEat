@@ -11,15 +11,17 @@
 
 <div id='myMap' style='width: 60vw; height: 60vh;margin:auto;width:50%;border:3px solid black; '></div>
 <script type='text/javascript'>   var wyniki = {{przeslij_html|tojson}};
-    iloscWynikow=(wyniki.length/4);
+console.log(wyniki);
+
+    iloscWynikow=(wyniki.length/5);
     function loadMapScenario() {
-     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
     while (iloscWynikow>0){
         var votes =wyniki[3]
-         var menuurl=wyniki[4];
+        var menuUrl=wyniki[4];
         if(votes==0)votes="";
         map.entities.push(new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(wyniki[0],wyniki[1]), {title: wyniki[2], text:votes}));
-       var z = 5;
+        var z = 5;
         while(z>0){
             wyniki.shift();
             z--;

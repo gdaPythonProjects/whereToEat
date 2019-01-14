@@ -8,17 +8,16 @@ app = Flask(__name__, template_folder='Strona')
 
 @app.route('/wynik', methods=['POST'])
 def wynik():
-
-
     szerokosc = request.form['szerokosc']
     dlugosc = request.form['dlugosc']
-
+    miasto= request.form['miasto']
     zasieg = request.form['zasieg']
     # x jest potrzebny do skrócenia nazwy funkcji
     x = funkcja_szer_dlug(szerokosc, dlugosc, zasieg)
+    y=funkcja_miasto(miasto)
     # wysłanie danych do wynik.html
-    if szerokosc == '':
-        return zasieg
+    if szerokosc == ''or dlugosc=='':
+        return render_template("wynik.html", przeslij_html=y)
     else:
         return render_template("wynik.html", przeslij_html=x)
 @app.route('/')
