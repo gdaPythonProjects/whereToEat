@@ -11,10 +11,11 @@
 <div id='myMap' style='width: 60vw; height: 60vh;margin:auto;width:50%;border:3px solid black; '></div>
 <script type='text/javascript'>   var wyniki = {{przeslij_html|tojson}};
 console.log(wyniki);
-
     iloscWynikow=(wyniki.length/5);
     function loadMapScenario() {
-    var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        center: new Microsoft.Maps.Location(wyniki[0],wyniki[1])
+    });
     while (iloscWynikow>0){
         var votes =wyniki[3]
         var menuUrl=wyniki[4];
