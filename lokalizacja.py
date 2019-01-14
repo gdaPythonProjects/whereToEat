@@ -1,44 +1,40 @@
 import requests
-
-Key = "b1216d51234f336579b6aed812325d24"
+import sys
+Key = "0d1356a0c37774b2f1b132913381d9b1"
+url = "https://developers.zomato.com/api/v2.1/"
 
 
 # funkcja która pobiera dane z API
-def funkcja_szer_dlug(szerokosc, dlugosc, zasieg):
-    listaMiejsce = []
+def zwracany_kod(x):
+    if x == 404:
+        return "Nie ma żadnych restauracji wspieranych przez Zomato  obok wskazanego miejsca"
+    elif x == 440:
+        return 'Wygasł limit klucza Api'
+    elif x == 403:
+        return 'Nieprawidłowy klucz Api'
+    else:
+        pass
+
+def funkcja_szer_dlug(szerokosc, dlugosc):
     listaAdresow = []
+    headers = {'Accept': 'application/json', 'user-key': Key}
+    r = requests.get(url + "geocode?lat=" + str(szerokosc) + "&lon=" + str(dlugosc), headers=headers)
+    # kod który zwraca request
+    kod = r.status_code
+    try:
+        dane = r.json()
 
-    url = "https://developers.zomato.com/api/v2.1/search?lat=" + str(dlugosc) + "&lon=" + str(
-        szerokosc) + "&sort=real_distance"
-    r = requests.get(url, headers={'user-key': Key})
-    data = r.json()
-
-    miejsca = data['restaurants']
-    # Wejście do JSON'A
-    for miejsce in miejsca:
-        listaAdresow.append((miejsce['restaurant']['location']['latitude']))
-        listaAdresow.append((miejsce['restaurant']['location']['longitude']))
-        listaAdresow.append((miejsce['restaurant']['name']))
-        listaAdresow.append((miejsce['restaurant']['user_rating']['aggregate_rating']))
-        listaAdresow.append((miejsce['restaurant']['menu_url']))
-
-    # poukladane1 = "<br />".join(listaAdresow)
+        for x in dane['nearby_restaurants']:
+            listaAdresow.append((x['restaurant']['location']['latitude']))
+            listaAdresow.append((x['restaurant']['location']['longitude']))
+            listaAdresow.append((x['restaurant']['name']))
+            listaAdresow.append((x['restaurant']['user_rating']['aggregate_rating']))
+            listaAdresow.append((x['restaurant']['menu_url']))
+    except:
+        return  zwracany_kod(kod)
     return listaAdresow
-def funkcja_miasto(miasto):
-    listaAdresow = []
 
-    url = "https://developers.zomato.com/api/v2.1/search?city="+str(miasto)
-    r = requests.get(url, headers={'user-key': Key})
-    data = r.json()
 
-    miejsca = data['restaurants']
-    # Wejście do JSON'A
-    for miejsce in miejsca:
-        listaAdresow.append((miejsce['restaurant']['location']['latitude']))
-        listaAdresow.append((miejsce['restaurant']['location']['longitude']))
-        listaAdresow.append((miejsce['restaurant']['name']))
-        listaAdresow.append((miejsce['restaurant']['user_rating']['aggregate_rating']))
-        listaAdresow.append((miejsce['restaurant']['menu_url']))
+funkcja_szer_dlug(34, 34)
 
-    # poukladane1 = "<br />".join(listaAdresow)
-    return str(listaAdresow)
+
