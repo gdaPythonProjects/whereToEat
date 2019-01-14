@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id
+from Walidator import dzialanie_na_stringu,dzialanie_na_liczbie
 import webbrowser
 
 # postawienie sewera
@@ -14,8 +15,8 @@ def wynik():
 
 
     # zapytanie o miasto
-
     if szerokosc == '' or dlugosc == '':
+        dzialanie_na_stringu(miasto)
         y= []
         s = funkcja_miasto_na_miasto_id(miasto)
         sz = [x for x in s if s.index(x)%2==0]
@@ -26,6 +27,7 @@ def wynik():
         for x in range(0,len(y)):
             nowa_lista +=y[x]
         if type(y) == list:
+            nowa_lista = list(set(nowa_lista))
             return render_template("wynik.html", przeslij_html=nowa_lista)
         elif type(y) == str:
             return y
@@ -33,6 +35,8 @@ def wynik():
             return "Nieznany błąd"
     #zapytanie o długosć i szerokość geograficzną
     else:
+        dzialanie_na_liczbie(szerokosc)
+        dzialanie_na_liczbie(dlugosc)
         x = funkcja_szer_dlug(szerokosc, dlugosc)
         if type(x) == list:
             return render_template("wynik.html", przeslij_html=x)
