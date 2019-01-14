@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
+<style type="text/css">
+    .wartosci{
+        text-align: center;
+    }
+</style>
 <head>
     <meta charset="ISO-8859-1">
     <title>Restauracje</title>
@@ -8,6 +13,23 @@
 
 </head>
 <body>
+    <center>
+<nav> <ul>
+<form method="POST" action="/wynik"><div style="width:50%;">
+
+        
+            <li><a>
+    Szerokość geograficzna:<br><input type="text" class="wartosci" name="szerokosc"> 
+        <br>
+        <button class="black" onclick="getLocation()">Użyj mojej lokalizacji<br><img height="60px" width="auto" src="https://imageog.flaticon.com/icons/png/512/54/54574.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF">  
+</a></li><li><a>
+    Długość geograficzna:<br><input type="text" class="wartosci" name="dlugosc">
+</a></li><li><a>
+    Zasięg: <p class="range-field"><input type="range"  class="wartosci" min="1" max="5000" value="1"  name="zasieg" onchange="updateTextInput(this.value)"></p>
+   <input type="text" id="odleglosc" value="1m" readonly size="1"><br>
+</a></li><li><a>
+    Miasto:<input type="text" class="wartosci" name="miasto"><br>
+
 
 <form method="POST" action="/wynik">
     Szerokość geograficzna: <input type="text" name="szerokosc"><br>
@@ -20,7 +42,15 @@
 <a class="waves-effect waves-green btn-large" href="#"><input type="submit"></a>
 </form>
 <button onclick="getLocation()"><img height="60px" width="auto" src="https://imageog.flaticon.com/icons/png/512/54/54574.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF">
+
 </button>
+
+</a></li><li><a>
+
+<a class="waves-effect waves-green btn-large" href="#"><input type="submit" value="Wyślij"></a>
+</a></li>
+
+</form></nav></center></div>
 <p id="demo"></p>
 
 </body>
