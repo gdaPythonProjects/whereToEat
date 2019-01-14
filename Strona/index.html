@@ -30,6 +30,19 @@
 </a></li><li><a>
     Miasto:<input type="text" class="wartosci" name="miasto"><br>
 
+
+<form method="POST" action="/wynik">
+    Szerokość geograficzna: <input type="text" name="szerokosc"><br>
+    Długość geograficzna: <input type="text" name="dlugosc"><br>
+    Miasto:<input type="text" name="miasto"><br>
+    <br>
+    <input type="text" id="odleglosc" value="1m" readonly size="1"><br>
+    <br>
+
+<a class="waves-effect waves-green btn-large" href="#"><input type="submit"></a>
+</form>
+<button onclick="getLocation()"><img height="60px" width="auto" src="https://imageog.flaticon.com/icons/png/512/54/54574.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF">
+
 </button>
 
 </a></li><li><a>

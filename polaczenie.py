@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from lokalizacja import funkcja_szer_dlug
+from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id
 import webbrowser
 
 # postawienie sewera
@@ -10,15 +10,27 @@ app = Flask(__name__, template_folder='Strona')
 def wynik():
     szerokosc = request.form['szerokosc']
     dlugosc = request.form['dlugosc']
-    # x jest potrzebny do skrócenia nazwy funkcji
-    x = funkcja_szer_dlug(szerokosc, dlugosc)
+    miasto = request.form['miasto']
+
+
     # wysłanie danych do wynik.html
-    if type(x) == list:
-        return render_template("wynik.html", przeslij_html=x)
-    elif type(x) == str:
-        return x
+    if szerokosc == '' or dlugosc == '':
+        s, d = funkcja_miasto_na_miasto_id(miasto)
+        y = funkcja_szer_dlug(s,d)
+        if type(y) == list:
+            return render_template("wynik.html", przeslij_html=y)
+        elif type(y) == str:
+            return y
+        else:
+            return "Nieznany błąd"
     else:
-        return "Nieznany błąd"
+        x = funkcja_szer_dlug(szerokosc, dlugosc)
+        if type(x) == list:
+            return render_template("wynik.html", przeslij_html=x)
+        elif type(x) == str:
+            return x
+        else:
+            return "Nieznany błąd"
 
 
 @app.route('/')
