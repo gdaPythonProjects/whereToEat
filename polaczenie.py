@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id
+from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id,funkcja_miasto
 import webbrowser
 
 # postawienie sewera
