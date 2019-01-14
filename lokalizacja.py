@@ -45,16 +45,16 @@ def funkcja_miasto_na_miasto_id(miasto):
     dlugosc =(dane['location_suggestions'][0]['longitude'])
     return szerokosc,dlugosc
 
-def funkcja_miasto(dlugosc,szerokosc):
+def funkcja_miasto(c,dlugosc,szerokosc):
     listaAdresow = []
     headers = {'Accept': 'application/json', 'user-key': Key}
-    r = requests.get(url + "geocode?lat=" + str(szerokosc) + "&lon=" + str(dlugosc), headers=headers)
+    r = requests.get(url + "search?count="+ str(c) + "&lat" + str(szerokosc) + "&lon=" + str(dlugosc), headers=headers)
     # kod który zwraca request
     kod = r.status_code
     try:
         dane = r.json()
 
-        for x in dane['nearby_restaurants']:
+        for x in dane['restaurants']:
             listaAdresow.append((x['restaurant']['location']['latitude']))
             listaAdresow.append((x['restaurant']['location']['longitude']))
             listaAdresow.append((x['restaurant']['name']))

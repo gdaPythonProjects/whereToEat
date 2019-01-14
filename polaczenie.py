@@ -16,7 +16,7 @@ def wynik():
     # wysłanie danych do wynik.html
     if szerokosc == '' or dlugosc == '':
         s, d = funkcja_miasto_na_miasto_id(miasto)
-        y = funkcja_szer_dlug(s,d)
+        y = funkcja_miasto(50,s,d)
         if type(y) == list:
             return render_template("wynik.html", przeslij_html=y)
         elif type(y) == str:
