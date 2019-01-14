@@ -4,14 +4,12 @@
     .wartosci{
         text-align: center;
     }
-
 </style>
 <head>
     <meta charset="ISO-8859-1">
     <title>Restauracje</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 </head>
 <body>
 <center>
@@ -19,12 +17,8 @@
         <ul>
             <form method="POST" action="/wynik">
                 <div style="width:50%;">
-
                     <li><a>Szerokość geograficzna:<br><input type="text" id="tak" class="wartosci" name="szerokosc"> <br>
-                      </a>
-                    </li>
-                    <li>
-                        <a> Długość geograficzna:<br><input type="text" class="wartosci" name="dlugosc">
+                    </a></li><li><a> Długość geograficzna:<br><input type="text" class="wartosci" name="dlugosc">
                           <button class="black" onclick="javascript:return getLocation()">Użyj mojej lokalizacji<br><br>
                             <img height="60px"width="auto"src="https://imageog.flaticon.com/icons/png/512/54/54574.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"> </a>
                     </li>
@@ -37,7 +31,6 @@
                         <button class="btn waves-effect waves-light" type="submit" name="action">Wyślij 
   </button>       </a></li>
             </div>
-
             </form>
         </ul>
     </nav>
@@ -60,8 +53,6 @@ function showPosition(position) {
     document.getElementsByName('szerokosc')[0].value=position.coords.latitude;
     document.getElementsByName('dlugosc')[0].value=position.coords.longitude;
 }
-
-
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>
