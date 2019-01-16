@@ -1,7 +1,7 @@
 from cryptography.fernet import Fernet
+key = Fernet.generate_key()
 # Put this somewhere safe!
 def szyfrowanie():
-    key = Fernet.generate_key()
     f = Fernet(key)
     token = f.encrypt(b"costam cosdtam")
     print(token)
