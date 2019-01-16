@@ -16,6 +16,7 @@ def zwracany_kod(x):
     else:
         pass
 
+
 def funkcja_szer_dlug(szerokosc, dlugosc):
     listaAdresow = []
     headers = {'Accept': 'application/json', 'user-key': Key}
@@ -24,7 +25,7 @@ def funkcja_szer_dlug(szerokosc, dlugosc):
     kod = r.status_code
     try:
         dane = r.json()
-    #przypisanie do listy potrzebmych dla nas danych
+        # przypisanie do listy potrzebmych dla nas danych
         for x in dane['nearby_restaurants']:
             listaAdresow.append((x['restaurant']['location']['latitude']))
             listaAdresow.append((x['restaurant']['location']['longitude']))
@@ -32,26 +33,39 @@ def funkcja_szer_dlug(szerokosc, dlugosc):
             listaAdresow.append((x['restaurant']['user_rating']['aggregate_rating']))
             listaAdresow.append((x['restaurant']['menu_url']))
     except:
-        return  zwracany_kod(kod)
+        return zwracany_kod(kod)
     return listaAdresow
 
+
 def funkcja_miasto_na_miasto_id(miasto):
-    zbior =[]
+    zbior = []
     headers = {'Accept': 'application/json', 'user-key': Key}
-    r = requests.get(url + 'locations?query='+ str(miasto), headers=headers)
+    r = requests.get(url + 'cities?q=' + str(miasto), headers=headers)
     kod = r.status_code
     dane = r.json()
-    szerokosc = (dane['location_suggestions'][0]['latitude'])
-    dlugosc =(dane['location_suggestions'][0]['longitude'])
-    szerokosc1=szerokosc
-    dlugosc1  = dlugosc
-    #rozszerzenie wyszukania restauracji
-    for x in range(5):
-        zbior.append(szerokosc)
-        zbior.append(dlugosc)
-        szerokosc+=0.01
-        dlugosc += 0.01
-        szerokosc1 -=0.01
-        dlugosc1 -= 0.01
-    return zbior
+    id = (dane['location_suggestions'][0]['id'])
+    return id
 
+
+def search(id):
+    listaAdresow = []
+    licznik = 0
+    while licznik != 200:
+        headers = {'Accept': 'application/json', 'user-key': Key}
+        r = requests.get(url + "search?entity_type=city&entity_id=" + str(id) + "&start=" + str(licznik) + "&count=20",
+                         headers=headers)
+        # kod który zwraca request
+        kod = r.status_code
+        try:
+            dane = r.json()
+            # przypisanie do listy potrzebmych dla nas danych
+            for x in dane['restaurants']:
+                listaAdresow.append((x['restaurant']['location']['latitude']))
+                listaAdresow.append((x['restaurant']['location']['longitude']))
+                listaAdresow.append((x['restaurant']['name']))
+                listaAdresow.append((x['restaurant']['user_rating']['aggregate_rating']))
+                listaAdresow.append((x['restaurant']['menu_url']))
+            licznik += 20
+        except:
+            return zwracany_kod(kod)
+    return listaAdresow
