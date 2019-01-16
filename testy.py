@@ -26,5 +26,7 @@ class LokalizacjaTest(TestCase):
         assert type(x) == list ,TypeError
         x = funkcja_szer_dlug("ddd", 23.23)
         assert type(x) == list, TypeError
-
-
+    def test_miasto_ID(self):
+        x = funkcja_miasto_na_miasto_id("gdańsk")
+        assert type(x) == int, TypeError
+        
