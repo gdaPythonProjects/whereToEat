@@ -15,26 +15,32 @@ def wynik():
 
 
     # zapytanie o miasto
-    if szerokosc == '' or dlugosc == '':
-        dzialanie_na_stringu(miasto)
-        y = search(funkcja_miasto_na_miasto_id(miasto))
-        if type(y) == list:
-            return render_template("wynik.html", przeslij_html=y)
-        elif type(y) == str:
-            return y
-        else:
-            return "Nieznany błąd"
-    #zapytanie o długosć i szerokość geograficzną
+    if szerokosc == '' and dlugosc == '' and miasto == '':
+        return render_template("index.html",przeslij_html="")
     else:
-        dzialanie_na_longitude(szerokosc)
-        dzialanie_na_latitude(dlugosc)
-        x = funkcja_szer_dlug(szerokosc, dlugosc)
-        if type(x) == list:
-            return render_template("wynik.html", przeslij_html=x)
-        elif type(x) == str:
-            return x
+        if szerokosc == '' and dlugosc == '':
+            dzialanie_na_stringu(miasto)
+            y = search(funkcja_miasto_na_miasto_id(miasto))
+            if type(y) == list:
+                return render_template("wynik.html", przeslij_html=y)
+            elif type(y) == str:
+                return y
+            else:
+                return "Nieznany błąd"
+        #zapytanie o długosć i szerokość geograficzną
         else:
-            return "Nieznany błąd"
+            if szerokosc == '' or dlugosc == '':
+                return render_template("index.html", przeslij_html="")
+            else:
+                dzialanie_na_longitude(szerokosc)
+                dzialanie_na_latitude(dlugosc)
+                x = funkcja_szer_dlug(szerokosc, dlugosc)
+                if type(x) == list:
+                    return render_template("wynik.html", przeslij_html=x)
+                elif type(x) == str:
+                    return x
+                else:
+                    return "Nieznany błąd"
 
 
 @app.route('/')

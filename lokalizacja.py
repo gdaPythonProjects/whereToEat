@@ -14,6 +14,7 @@ def zwracany_kod(x):
     elif x == 403:
         return 'Nieprawidłowy klucz Api'
     else:
+        print(x)
         pass
 
 
