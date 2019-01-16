@@ -33,8 +33,12 @@ def wynik():
             if szerokosc == '' or dlugosc == '':
                 return render_template("index.html", przeslij_html="")
             else:
-                if szerokosc != szerokosc.isnumeric() or dlugosc!=dlugosc.isnumeric()
-                    return 0
+                if szerokosc != szerokosc.isnumeric():
+                    szerokosc = 0
+                    return szerokosc
+                if dlugosc != dlugosc.isnumeric():
+                    dlugosc = 0
+                    return dlugosc
                 dzialanie_na_longitude(szerokosc)
                 dzialanie_na_latitude(dlugosc)
                 x = funkcja_szer_dlug(szerokosc, dlugosc)
