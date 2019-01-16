@@ -9,8 +9,8 @@
 <body>
 <div id='printoutPanel'></div>
 <div id='myMap' style='width: 60vw; height: 60vh;margin:auto;width:50%;border:3px solid black; '></div>
+<div id="tabela"></div>
 <script type='text/javascript'>   var wyniki = {{przeslij_html|tojson}};
-console.log(wyniki);
     iloscWynikow=(wyniki.length/5);
     function loadMapScenario() {
     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
@@ -28,10 +28,46 @@ console.log(wyniki);
             }
         iloscWynikow--;
     }}
+
+
 </script>
 <script type='text/javascript'
         src='https://www.bing.com/api/maps/mapcontrol?key=ApLReG14M6sT3mBJyKSDPBI872kC1nMfb5G58GxIn-jr_e6pCOfG14tqlP1AbP3T&callback=loadMapScenario'
         async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript">
+    var lokale = {{przeslij_html|tojson}};
+    function tabelka2d(lokale) {
+    var tablica = [];
+    while(lokale.length) tablica.push(lokale.splice(0,5));
+    return(tablica);
+}
+
+function stworzTabele(tableData) {
+  var tabelka = document.createElement('table');
+  tabelka.class="striped centered";
+  var tabelkaBody = document.createElement('tbody');
+  tabelkaBody.innerHTML+="<tr><td>DŁUGOŚĆ<\/td><td>SZEROKOŚĆ<\/td><td>NAZWA<\/td><td>OCENA<\/td><td>MENU<\/td><\/tr>";
+  tableData.forEach(function(kolumnaDane) {
+    var kolumna = document.createElement('tr');
+
+    kolumnaDane.forEach(function(komorkaDane) {
+      var komorka = document.createElement('td');
+      komorka.appendChild(document.createTextNode(komorkaDane));
+      if(/http/.test(komorka.innerHTML)){
+        kolumna.href=(komorka);
+      }
+      kolumna.appendChild(komorka);
+    });
+
+    tabelkaBody.appendChild(kolumna);
+  });
+
+  tabelka.appendChild(tabelkaBody);
+  document.body.appendChild(tabelka);
+}
+stworzTabele(tabelka2d(lokale));
+
+</script>
 </body>
 </html>
