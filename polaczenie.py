@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id,search
 from Walidator import dzialanie_na_stringu,dzialanie_na_latitude,dzialanie_na_longitude
 import webbrowser
+import html
 
 # postawienie sewera
 app = Flask(__name__, template_folder='Strona')

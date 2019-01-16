@@ -1,7 +1,7 @@
 import requests
 import sys
 
-Key = "0d1356a0c37774b2f1b132913381d9b1"
+
 url = "https://developers.zomato.com/api/v2.1/"
 
 
