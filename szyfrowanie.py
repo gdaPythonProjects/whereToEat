@@ -1,8 +1,5 @@
 from cryptography.fernet import Fernet
 
-
-
-
 def szyfrowanie(plik):
     klucz = open(plik, 'r')
     p = klucz.read()
