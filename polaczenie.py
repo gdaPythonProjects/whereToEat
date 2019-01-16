@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
-from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id
-from Walidator import dzialanie_na_stringu,dzialanie_na_liczbie
+from lokalizacja import funkcja_szer_dlug,funkcja_miasto_na_miasto_id,search
+from Walidator import dzialanie_na_stringu,dzialanie_na_latitude,dzialanie_na_longitude
 import webbrowser
+import html
 
 # postawienie sewera
 app = Flask(__name__, template_folder='Strona')
@@ -15,35 +16,32 @@ def wynik():
 
 
     # zapytanie o miasto
-    if szerokosc == '' or dlugosc == '':
-        dzialanie_na_stringu(miasto)
-        y= []
-        s = funkcja_miasto_na_miasto_id(miasto)
-        sz = [x for x in s if s.index(x)%2==0]
-        dl = [x for x in s if s.index(x)%2!=0]
-        for x in range(len(sz)):
-            y.append(funkcja_szer_dlug(sz[x],dl[x]))
-        nowa_lista = []
-        for x in range(0,len(y)):
-            nowa_lista +=y[x]
-        if type(y) == list:
-            nowa_lista = list(set(nowa_lista))
-            return render_template("wynik.html", przeslij_html=nowa_lista)
-        elif type(y) == str:
-            return y
-        else:
-            return "Nieznany błąd"
-    #zapytanie o długosć i szerokość geograficzną
+    if szerokosc == '' and dlugosc == '' and miasto == '' or szerokosc != '' and dlugosc != '' and miasto != '' :
+        return render_template("index.html",przeslij_html="")
     else:
-        dzialanie_na_liczbie(szerokosc)
-        dzialanie_na_liczbie(dlugosc)
-        x = funkcja_szer_dlug(szerokosc, dlugosc)
-        if type(x) == list:
-            return render_template("wynik.html", przeslij_html=x)
-        elif type(x) == str:
-            return x
+        if szerokosc == '' and dlugosc == '':
+            dzialanie_na_stringu(miasto)
+            y = search(funkcja_miasto_na_miasto_id(miasto))
+            if type(y) == list:
+                return render_template("wynik.html", przeslij_html=y)
+            elif type(y) == str:
+                return y
+            else:
+                return "Nieznany błąd"
+        #zapytanie o długosć i szerokość geograficzną
         else:
-            return "Nieznany błąd"
+            if szerokosc == '' or dlugosc == '':
+                return render_template("index.html", przeslij_html="")
+            else:
+                dzialanie_na_longitude(szerokosc)
+                dzialanie_na_latitude(dlugosc)
+                x = funkcja_szer_dlug(szerokosc, dlugosc)
+                if type(x) == list:
+                    return render_template("wynik.html", przeslij_html=x)
+                elif type(x) == str:
+                    return x
+                else:
+                    return "Nieznany błąd"
 
 
 @app.route('/')
