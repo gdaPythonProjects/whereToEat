@@ -1,14 +1,20 @@
 from cryptography.fernet import Fernet
-klucz=open('klucz.txt','w+')
-plik =klucz.read()
-key = Fernet.generate_key()
-# Put this somewhere safe!
-def szyfrowanie(plik):
-    f = Fernet(key)
-    return (f.encrypt(b"plik"))
 
-def deszyfrowanie():
-    odkodowane = f.decrypt(token)
+
+
+
+def szyfrowanie(plik):
+    klucz = open(plik, 'r')
+    p = klucz.read()
+    key = Fernet.generate_key()
+    f = Fernet(key)
+    token = f.encrypt(bytes(p,'utf-8'))
+    zaszyfrowany_plik = open('zaszyfrowane.txt','w')
+    zaszyfrowany_plik.write(str(token))
+    odkodowane = str(f.decrypt(token))
+    odkodowane = odkodowane[2:]
+    odkodowane = odkodowane[:-1]
     return odkodowane
-'A really secret message. Not for prying eyes.'
-klucz.write(str(szyfrowanie(plik)))
+
+
+

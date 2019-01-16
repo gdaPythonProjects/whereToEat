@@ -16,7 +16,7 @@ def wynik():
 
 
     # zapytanie o miasto
-    if szerokosc == '' and dlugosc == '' and miasto == '':
+    if szerokosc == '' and dlugosc == '' and miasto == '' or szerokosc != '' and dlugosc != '' and miasto != '' :
         return render_template("index.html",przeslij_html="")
     else:
         if szerokosc == '' and dlugosc == '':
