@@ -4,8 +4,6 @@ from lokalizacja import zwracany_kod,funkcja_szer_dlug,funkcja_miasto_na_miasto_
 
 
 class FlaskTest(TestCase):
-    def create_app(self):
-        return myflaskapp
 
     def test_greeting(self):
         self.app.get('/')
