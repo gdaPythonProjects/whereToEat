@@ -1,7 +1,7 @@
 import requests
-import sys
+from szyfrowanie import szyfrowanie
 
-
+Key = szyfrowanie('klucz.txt')
 url = "https://developers.zomato.com/api/v2.1/"
 
 
