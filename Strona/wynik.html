@@ -52,7 +52,7 @@ function stworzTabele(tableData) {
       var komorka = document.createElement('td');
       komorka.appendChild(document.createTextNode(komorkaDane));
       if(/http/.test(komorka.innerHTML)){
-        komorka = document.createRange().createContextualFragment("<td><a href=\""+komorka.innerHTML+"\">MENU<\a><\/td>");
+        komorka = document.createRange().createContextualFragment("<td><a href=\""+komorka.innerHTML+"\">MENU<\/a><\/td>");
       }
       kolumna.appendChild(komorka);
     });
